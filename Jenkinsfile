@@ -2,33 +2,35 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'
+        maven 'Maven3'
     }
 
     stages {
 
-        stage('Clone') {
+        stage('Clone Code') {
             steps {
-                git 'https://github.com/NAGARAJU-YARRAMSETTI/jenkins-demo.git'
+                git branch: 'main',
+                url: 'https://github.com/NAGARAJU-YARRAMSETTI/jenkins-demo.git'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                sh 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
 
-        stage('Run') {
+        stage('Package') {
             steps {
-                bat 'java -jar target/*.jar'
+                sh 'ls target'
             }
         }
     }
 }
+
