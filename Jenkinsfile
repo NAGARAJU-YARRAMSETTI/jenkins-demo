@@ -28,7 +28,7 @@ pipeline {
 
         stage('Package') {
             steps {
-                bat 'ls target'
+                bat 'dir target'
             }
         }
     }
